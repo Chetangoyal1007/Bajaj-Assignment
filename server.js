@@ -1,18 +1,18 @@
-const express = require('express');
-const app = express();
-
-app.use(express.json());
-
 app.post('/bfhl', (req, res) => {
   try {
     const data = req.body.data;
+
+    
     if (!Array.isArray(data)) {
-      return res.status(400).json({ is_success: false, message: 'Invalid input format' });
+      return res.status(400).json({
+        is_success: false,
+        message: "Invalid input: 'data' should be an array"
+      });
     }
 
-    const user_id = 'chetan_goyal_10072004'; 
-    const email = 'chetan1457.be22@chitkara.edu.in';  
-    const roll_number = '2210991457';       
+    const user_id = 'chetan_goyal_10072004';
+    const email = 'chetan1457.be22@chitkara.edu.in';
+    const roll_number = '2210091457';
 
     const even_numbers = [];
     const odd_numbers = [];
@@ -33,15 +33,17 @@ app.post('/bfhl', (req, res) => {
       }
     }
 
-    
     const reversedAlpha = alphabets.join('').split('').reverse();
     let concat_string = '';
-    reversedAlpha.forEach((char, index) => {
-      concat_string += index % 2 === 0 ? char.toUpperCase() : char.toLowerCase();
+    reversedAlpha.forEach((ch, i) => {
+      concat_string += i % 2 === 0 ? ch.toUpperCase() : ch.toLowerCase();
     });
 
+    
+    const is_success = true;
+
     res.status(200).json({
-      is_success: true,
+      is_success,
       user_id,
       email,
       roll_number,
@@ -54,13 +56,11 @@ app.post('/bfhl', (req, res) => {
     });
 
   } catch (error) {
+    
     res.status(500).json({
       is_success: false,
-      message: 'Server Error',
+      message: 'Server error',
       error: error.message
     });
   }
 });
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
