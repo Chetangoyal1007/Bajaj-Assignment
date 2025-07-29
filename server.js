@@ -1,8 +1,13 @@
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
 app.post('/bfhl', (req, res) => {
   try {
     const data = req.body.data;
 
-    
+    // Validate input
     if (!Array.isArray(data)) {
       return res.status(400).json({
         is_success: false,
@@ -10,8 +15,8 @@ app.post('/bfhl', (req, res) => {
       });
     }
 
-    const user_id = 'chetan_goyal_10072004';
-    const email = 'chetan1457.be22@chitkara.edu.in';
+    const user_id = 'chetan_goyal_01012003';
+    const email = 'your.email@domain.com';
     const roll_number = '2210091457';
 
     const even_numbers = [];
@@ -39,7 +44,7 @@ app.post('/bfhl', (req, res) => {
       concat_string += i % 2 === 0 ? ch.toUpperCase() : ch.toLowerCase();
     });
 
-    
+    // If processing reaches here, we consider it successful
     const is_success = true;
 
     res.status(200).json({
@@ -56,7 +61,7 @@ app.post('/bfhl', (req, res) => {
     });
 
   } catch (error) {
-    
+    // If an error occurs, set is_success = false
     res.status(500).json({
       is_success: false,
       message: 'Server error',
@@ -64,3 +69,6 @@ app.post('/bfhl', (req, res) => {
     });
   }
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
