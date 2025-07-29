@@ -10,9 +10,9 @@ app.post('/bfhl', (req, res) => {
       return res.status(400).json({ is_success: false, message: 'Invalid input format' });
     }
 
-    const user_id = 'chetan_goyal_01012003'; // your_name_ddmmyyyy
-    const email = 'your.email@domain.com';  // replace with your email
-    const roll_number = '2210091457';       // replace with your roll no
+    const user_id = 'chetan_goyal_10072004'; 
+    const email = 'chetan1457.be22@chitkara.edu.in';  
+    const roll_number = '2210991457';       
 
     const even_numbers = [];
     const odd_numbers = [];
@@ -33,7 +33,7 @@ app.post('/bfhl', (req, res) => {
       }
     }
 
-    // Create concat string (alphabets reversed, alternating caps)
+    
     const reversedAlpha = alphabets.join('').split('').reverse();
     let concat_string = '';
     reversedAlpha.forEach((char, index) => {
