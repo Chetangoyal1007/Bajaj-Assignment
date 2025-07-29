@@ -109,7 +109,7 @@ app.post("/bfhl", (req, res) => {
           
           if (isNaN(num)) {
             processingErrors.push(
-              Invalid number at index ${index}: ${itemStr}
+              `Invalid number at index ${index}: ${itemStr}`
             );
             return;
           }
@@ -144,12 +144,12 @@ app.post("/bfhl", (req, res) => {
         } else {
          
           processingErrors.push(
-            Unprocessable item at index ${index}: ${itemStr}
+            `Unprocessable item at index ${index}: ${itemStr}`
           );
         }
       } catch (itemError) {
         processingErrors.push(
-          Error processing item at index ${index}: ${itemError.message}
+          `Error processing item at index ${index}: ${itemError.message}`
         );
       }
     });
@@ -163,7 +163,7 @@ app.post("/bfhl", (req, res) => {
       concatString = createConcatString(alphabets);
     } catch (concatError) {
       processingErrors.push(
-        Error creating concat string: ${concatError.message}
+        `Error creating concat string: ${concatError.message}`
       );
     }
 
@@ -226,7 +226,7 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(Server is running on port ${PORT});
+  console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
